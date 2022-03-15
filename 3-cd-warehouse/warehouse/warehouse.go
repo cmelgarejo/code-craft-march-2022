@@ -1,6 +1,10 @@
 package warehouse
 
-import "github.com/cmelgarejo/code-craft-march-2022/3-cd-warehouse/cd"
+import (
+	"strings"
+
+	"github.com/cmelgarejo/code-craft-march-2022/3-cd-warehouse/cd"
+)
 
 const (
 	NOT_ENOUGH_STOCK = "not enough stock"
@@ -20,58 +24,31 @@ func NewWarehouse(cds []cd.CD) *Warehouse {
 
 func (w *Warehouse) AddCDs(cds []cd.CD) string {
 	for i, cd := range cds {
-		if result := w.SearchByTitle(cd.Title); result == NOT_FOUND {
+		if result := w.SearchByTitle(cd.Title); len(result) == 0 {
 			w.stock = append(w.stock, cd)
-		} else if result == SUCCESS {
+		} else if len(result) > 0 {
 			w.stock[i].Quantity += cd.Quantity
 		}
 	}
 	return SUCCESS
 }
 
-func (w *Warehouse) SearchByTitle(title string) string {
+func (w *Warehouse) SearchByTitle(title string) []cd.CD {
+	results := []cd.CD{}
 	for _, cd := range w.stock {
-		if cd.Title == title {
-			return SUCCESS
+		if strings.Contains(cd.Title, title) {
+			results = append(results, cd)
 		}
 	}
-	return NOT_FOUND
+	return results
 }
 
-func (w *Warehouse) SearchByArtist(artist string) string {
+func (w *Warehouse) SearchByArtist(artist string) []cd.CD {
+	results := []cd.CD{}
 	for _, cd := range w.stock {
-		if cd.Artist == artist {
-			return SUCCESS
+		if strings.Contains(cd.Artist, artist) {
+			results = append(results, cd)
 		}
 	}
-	return NOT_FOUND
-}
-
-func (w *Warehouse) Rate(title string, rating int, comment string) string {
-	if result := w.SearchByTitle(title); result == NOT_FOUND {
-		return result
-	}
-	for _, item := range w.stock {
-		if item.Title == title {
-			item.Ratings = append(item.Ratings, cd.Rating{Rating: rating, Comment: comment})
-			return SUCCESS
-		}
-	}
-	return NOT_FOUND
-}
-
-func (w *Warehouse) Buy(title string, ccNo string, ccExpDate string) string {
-	if result := w.SearchByTitle(title); result == NOT_FOUND {
-		return result
-	}
-	for _, cd := range w.stock {
-		if cd.Title == title {
-			if cd.Quantity > 0 {
-				cd.Quantity--
-				return SUCCESS
-			}
-			return NOT_ENOUGH_STOCK
-		}
-	}
-	return NOT_FOUND
+	return results
 }
