@@ -9,10 +9,10 @@ import (
 
 var (
 	cds = []cd.CD{
-		{Title: "No stock", Artist: "Alicia Keys", Rating: 3, Quantity: 0, Comments: []string{}},
-		{Title: "Go Ahead", Artist: "Alicia Keys", Rating: 4, Quantity: 1, Comments: []string{}},
-		{Title: "Ready 2 Go", Artist: "Martin Solveig", Rating: 5, Quantity: 4, Comments: []string{}},
-		{Title: "Go", Artist: "Delilah", Rating: 1, Quantity: 9, Comments: []string{}},
+		{Title: "No stock", Artist: "Alicia Keys", Quantity: 0, Ratings: []cd.Rating{{Rating: 3, Comment: "no stock album"}}},
+		{Title: "Go Ahead", Artist: "Alicia Keys", Quantity: 1, Ratings: []cd.Rating{{Rating: 3, Comment: "Good album"}}},
+		{Title: "Ready 2 Go", Artist: "Martin Solveig", Quantity: 4, Ratings: []cd.Rating{{Rating: 3, Comment: "ready album"}}},
+		{Title: "Go", Artist: "Delilah", Quantity: 9, Ratings: []cd.Rating{{Rating: 3, Comment: "go there album"}}},
 	}
 	users = []customer.Customer{
 		{FullName: "John Doe", CCNo: "1234-1234-1234-1234", CCExpDate: "2025-01-01"},

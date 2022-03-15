@@ -51,10 +51,9 @@ func (w *Warehouse) Rate(title string, rating int, comment string) string {
 	if result := w.SearchByTitle(title); result == NOT_FOUND {
 		return result
 	}
-	for _, cd := range w.stock {
-		if cd.Title == title {
-			cd.Rating += rating
-			cd.Comments = append(cd.Comments, comment)
+	for _, item := range w.stock {
+		if item.Title == title {
+			item.Ratings = append(item.Ratings, cd.Rating{Rating: rating, Comment: comment})
 			return SUCCESS
 		}
 	}

@@ -3,9 +3,10 @@ package cd
 type CD struct {
 	Title    string
 	Artist   string
-	Rating   int
 	Quantity int
-	Comments  []string
+	Ratings  []Rating
+	// Rating   int
+	// Comments []string
 }
 
 type Rating struct {

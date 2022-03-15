@@ -11,3 +11,8 @@ func TestRating_Positive(t *testing.T) {
 	rate := wareHouse.Rate("No stock", 5, "this album was not her best")
 	assert.Equal(t, warehouse.SUCCESS, rate)
 }
+
+func TestRating_Negative(t *testing.T) {
+	rate := wareHouse.Rate("this doesnt Exists", 5, "this album was not her best")
+	assert.Equal(t, warehouse.NOT_FOUND, rate)
+}
