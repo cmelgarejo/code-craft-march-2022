@@ -3,10 +3,9 @@ package cd
 type CD struct {
 	Title    string
 	Artist   string
+	Price    int
 	Quantity int
 	Ratings  []Rating
-	// Rating   int
-	// Comments []string
 }
 
 type Rating struct {
@@ -19,15 +18,21 @@ const (
 	SUCCESS          = "success"
 )
 
+func NewCD(title, artist string, quantity, price int, ratings []Rating) CD {
+	return CD{
+		Title:    title,
+		Artist:   artist,
+		Price:    price,
+		Quantity: quantity,
+		Ratings:  ratings,
+	}
+}
+
 func (cd *CD) Rate(rating int, comment string) bool {
 	cd.Ratings = append(cd.Ratings, Rating{Rating: rating, Comment: comment})
 	return true
 }
 
-func (cd *CD) Buy(ccNo string, ccExpDate string) string {
-	if cd.Quantity > 0 {
-		cd.Quantity--
-		return SUCCESS
-	}
-	return NOT_ENOUGH_STOCK
+func (cd *CD) GetPrice() int {
+	return cd.Price
 }

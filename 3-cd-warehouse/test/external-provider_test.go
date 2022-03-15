@@ -8,11 +8,31 @@ import (
 )
 
 func TestCCExternalProvider_Positive(t *testing.T) {
-	paymentGateway = external.PaymentGatewaySuccess{}
+	paymentGateway = PaymentGatewaySuccess{}
 	assert.Equal(t, external.SUCCESS, paymentGateway.Validate(users[0].CCNo, users[0].CCExpDate))
 }
 
 func TestCCExternalProvider_Negative(t *testing.T) {
-	paymentGateway = external.PaymentGatewayFail{}
+	paymentGateway = PaymentGatewayFail{}
 	assert.Equal(t, external.FAIL, paymentGateway.Validate(users[0].CCNo, users[0].CCExpDate))
+}
+
+func TestChartServiceNotify_Positive(t *testing.T) {
+	item := wareHouse.SearchByTitle("Go Ahead")
+	if len(item) == 1 {
+		qty := 1
+		chartSvc = ChartServiceMockPositive{}
+		notified := chartSvc.Notify(item[0].Title, item[0].Artist, qty)
+		assert.Equal(t, true, notified)
+	}
+}
+
+func TestChartServiceNotify_Negative(t *testing.T) {
+	item := wareHouse.SearchByTitle("Go Ahead")
+	if len(item) == 1 {
+		qty := 1
+		chartSvc = ChartServiceMockNegative{}
+		notified := chartSvc.Notify(item[0].Title, item[0].Artist, qty)
+		assert.Equal(t, false, notified)
+	}
 }
