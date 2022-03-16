@@ -43,14 +43,14 @@ func (r *Rover) Direction() string {
 }
 
 func (r *Rover) Move(cmds string) {
-	for _, cmd := range cmds{
+	for _, cmd := range cmds {
 		cmd := string(cmd)
 
 		// fmt.Printf("\nPRE -> CMD:%v, POS:%v, DIR:%v", cmd, r.position, r.direction)
 		switch cmd {
-		case LEFT,RIGHT:
+		case LEFT, RIGHT:
 			r.rotate(cmd)
-		case BACK,FORWARD:
+		case BACK, FORWARD:
 			r.move(cmd)
 		default:
 			fmt.Printf("invalid command %v \n", cmd)
@@ -78,7 +78,6 @@ func (r *Rover) move(cmd string) {
 	}
 }
 
-
 func (r *Rover) rotate(cmd string) {
 	current := r.getDir()
 	if cmd == LEFT {
@@ -86,13 +85,11 @@ func (r *Rover) rotate(cmd string) {
 	} else if cmd == RIGHT {
 		current += 1
 	}
-
 	if current > 3 {
 		current = 0
 	} else if current < 0 {
 		current = 3
 	}
-
 	r.direction = coordinates[current]
 }
 

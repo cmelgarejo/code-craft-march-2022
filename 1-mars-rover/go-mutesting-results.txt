@@ -1,0 +1,5 @@
+SKIP "/var/folders/97/gmfr05md5wb_k_jndyp7_dw40000gn/T/go-mutesting-864457918/rover/rover.go.3" with checksum ada37be159e44acdedc71adda74e6edd
+SKIP "/var/folders/97/gmfr05md5wb_k_jndyp7_dw40000gn/T/go-mutesting-864457918/rover/rover.go.4" with checksum 7374a3b82e6959a083afd072f8e616ac
+SKIP "/var/folders/97/gmfr05md5wb_k_jndyp7_dw40000gn/T/go-mutesting-864457918/rover/rover.go.5" with checksum 688ea686bd1fb0733e3f9e6e47158719
+SKIP "/var/folders/97/gmfr05md5wb_k_jndyp7_dw40000gn/T/go-mutesting-864457918/rover/rover.go.6" with checksum 93dd551cf80487b43a45c96dcfc0acd7
+The mutation score is 0.000000 (0 passed, 0 failed, 24 duplicated, 4 skipped, total is 4)
